@@ -25,9 +25,14 @@ runs:
       run: |
         git config user.name "respec-action"
         git config user.email "<>"
+
+        git switch "${{ inputs.publish_branch }}"
+        if [ $? -ne 0 ]; then
+          git switch -c "${{ inputs.publish_branch }}"
+        fi
+
         git add .
         if [ $? -eq 0 ]; then
-          git switch -c "${{ inputs.publish_branch }}"
           git commit -m "Latest ReSpec HTML"
           git push origin "${{ inputs.publish_branch }}"
         else
