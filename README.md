@@ -6,5 +6,20 @@
 
 For the action to push to your gh-pages branch you will need to grant write permission in Settings / Actions / General / Read and write permissions.
 
+```yaml
+name: Test Action
+on:
+  - push
+jobs:
+  respec:
+    runs-on: ubuntu-latest
+    name: Builds the ReSpec HTML
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run respec_action
+        uses: ./
+```
+
 [ReSpec]: https://respec.org/docs/
 [Github Action]: https://docs.github.com/en/actions
