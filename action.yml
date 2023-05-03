@@ -26,13 +26,11 @@ runs:
         git config user.name "respec-action"
         git config user.email "<>"
 
-        git pull origin "${{ inputs.publish_branch }}"
-        git checkout "${{ inputs.publish_branch }}" || git checkout -b "${{ inputs.publish_branch }}"
-
+        git checkout -b "${{ inputs.publish_branch }}"
         git add .
         if [ $? -eq 0 ]; then
           git commit -m "Latest ReSpec HTML"
-          git push origin "${{ inputs.publish_branch }}"
+          git push origin "${{ inputs.publish_branch }}" --force
         else
           echo "No ReSpec HTML needed publishing"
         fi
