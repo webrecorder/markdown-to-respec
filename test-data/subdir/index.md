@@ -1,3 +1,8 @@
+---
+editors: 
+  - name: Git Hub Jr
+    email: git@example.com
+---
 # Test Specification
  
 ## Status of this Document
