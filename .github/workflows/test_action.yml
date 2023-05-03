@@ -9,7 +9,6 @@ jobs:
       - name: Checkout
         uses: action/checkout@v2
       - name: ls
-        run: 
-          - "ls -al"
+        run: "ls -al"
       - name: Run respec_action
         uses: ./
