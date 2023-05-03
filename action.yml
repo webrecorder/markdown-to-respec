@@ -26,7 +26,7 @@ runs:
         git config user.name "respec-action"
         git config user.email "<>"
 
-        git switch "${{ inputs.publish_branch }}" || git switch -c "${{ inputs.publish_branch }}"
+        git checkout "${{ inputs.publish_branch }}" || git checkout -b "${{ inputs.publish_branch }}"
 
         git add .
         if [ $? -eq 0 ]; then
