@@ -1,0 +1,17 @@
+name: respec-action
+description: publish specifications written in Markdown files as ReSpec HTML
+inputs:
+outputs:
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@4
+      with:
+        python-version: "3.11"
+    - name: Install Dependencies
+      run:
+        - pip install poetry
+        - poetry install
+    - name: Generate ReSpec
+      run: poetry run respec_action.py

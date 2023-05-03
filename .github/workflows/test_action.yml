@@ -1,0 +1,13 @@
+name: Test Action
+on:
+  - push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Builds the ReSpec HTML
+    steps:
+      - name: Checkout
+        uses: action/checkout@v3
+      - name: Run respec_action
+        id: respec_action
+        uses: ./
