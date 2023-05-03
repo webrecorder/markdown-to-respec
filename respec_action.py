@@ -79,7 +79,7 @@ def parse_markdown(markdown_file):
     if 'authors' not in doc.metadata:
         doc.metadata['authors'] = []
     if 'title' not in doc.metadata:
-        determine_title(doc)
+        extract_title(doc)
 
     # These need to be <section> elements, but it's nice to have them as
     # headinged sections in the Markdown.
@@ -89,28 +89,10 @@ def parse_markdown(markdown_file):
 
     return doc
 
-def determine_title(doc):
+def extract_title(doc):
     if m := re.search(r'# (.+?)$', doc.content, re.MULTILINE):
         doc.metadata['title'] = m.group(1).strip()
         doc.content = re.sub(m.group(0), '', doc.content, count=1).strip()
-
-def determine_abstract(doc):
-    if m := re.search(r'^#+ Abstract$((?:\W|\w)+?)^#', doc.content, re.MULTILINE):
-        abstract = m.group(1).strip()
-        doc.metadata['abstract'] = abstract
-        doc.content = doc.content.replace(m.group(0), '#')
-
-def determine_conformance(doc):
-    if m := re.search(r'^#+ Conformance$((?:\W|\w)+?)^#', doc.content, re.MULTILINE):
-        conformance = m.group(1).strip()
-        doc.metadata['conformance'] = conformance
-        doc.content = doc.content.replace(m.group(0), '#')
-
-def determine_sotd(doc):
-    if m := re.search(r'^#+ Status of this Document$((?:\W|\w)+?)^#', doc.content, re.MULTILINE):
-        sotd = m.group(1).strip()
-        doc.metadata['sotd'] = sotd
-        doc.content = doc.content.replace(m.group(0), '#')
 
 def extract_section(doc, header, name):
     pattern = re.compile(r'^#+ ' + header + r'$((?:\W|\w)+?)^#', re.MULTILINE)
