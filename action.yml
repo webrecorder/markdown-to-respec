@@ -1,7 +1,7 @@
 name: respec-action
 description: publish specifications written in Markdown files as ReSpec HTML
-inputs:
-outputs:
+inputs: []
+outputs: []
 runs:
   using: composite
   steps:
