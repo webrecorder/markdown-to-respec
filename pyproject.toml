@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "respecmd"
+version = "0.1.0"
+description = "A Github action for turning Markdown documents into ReSpec HTML"
+authors = ["Ed Summers <ehs@pobox.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+python-frontmatter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
