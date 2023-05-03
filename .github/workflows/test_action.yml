@@ -9,5 +9,4 @@ jobs:
       - name: Checkout
         uses: action/checkout@v2
       - name: Run respec_action
-        id: respec_action
         uses: ./
