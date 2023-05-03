@@ -1,7 +1,8 @@
 ---
 editors: 
   - name: Git Hub Jr
-    email: git@example.com
+    url: https://github.com
+    company: Github
 ---
 # Test Specification
  
