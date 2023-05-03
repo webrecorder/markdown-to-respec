@@ -8,5 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: action/checkout@v2
+      - name: ls
+        run: 
+          - "ls -al"
       - name: Run respec_action
         uses: ./
