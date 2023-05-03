@@ -28,7 +28,7 @@ runs:
         git add .
         if [ $? -eq 0 ]; then
           git checkout -b "${{ inputs.publish_branch }}"
-          git pull
+          git pull origin "${{ inputs.publish_branch }}"
           git commit -m "Latest ReSpec HTML"
           git push origin "${{ inputs.publish_branch }}"
         else
