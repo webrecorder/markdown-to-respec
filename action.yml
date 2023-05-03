@@ -20,3 +20,13 @@ runs:
     - name: Generate ReSpec
       shell: bash
       run: poetry run ./respec_action.py
+    - name: Publish
+      shell: bash
+      run: |
+        git config user.name "respec-action"
+        git commit -va "latest respec html"
+        if [ $? -eq 0 ]; then
+          git push origin "{{ inputs.publish_branch }}"
+        else
+          echo "No ReSpec HTML needed publishing"
+        fi
