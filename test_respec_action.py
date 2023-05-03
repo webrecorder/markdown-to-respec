@@ -14,7 +14,7 @@ def setup_data():
 def test_run(setup_data):
     assert pathlib.Path('test/subdir/index.md').is_file()
 
-    respec_action.main('test', skip_publish=True)
+    respec_action.main('test')
 
     html_file = pathlib.Path('test/subdir/index.html')
     assert html_file.is_file()
