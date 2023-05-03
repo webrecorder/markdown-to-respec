@@ -26,10 +26,7 @@ runs:
         git config user.name "respec-action"
         git config user.email "<>"
 
-        git switch "${{ inputs.publish_branch }}"
-        if [ $? -ne 0 ]; then
-          git switch -c "${{ inputs.publish_branch }}"
-        fi
+        git switch "${{ inputs.publish_branch }}" || git switch -c "${{ inputs.publish_branch }}"
 
         git add .
         if [ $? -eq 0 ]; then
