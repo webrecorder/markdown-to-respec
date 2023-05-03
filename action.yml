@@ -1,7 +1,10 @@
 name: respec-action
 description: publish specifications written in Markdown files as ReSpec HTML
-inputs: []
-outputs: []
+inputs:
+  publish_branch:
+    description: 'The git branch to publish HTML to.'
+    required: true
+    default: 'gh-pages'
 runs:
   using: composite
   steps:
