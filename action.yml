@@ -27,6 +27,7 @@ runs:
         git config user.email "<>"
 
         git checkout "${{ inputs.publish_branch }}" || git checkout -b "${{ inputs.publish_branch }}"
+        git pull origin "${{ inputs.publish_branch }}"
 
         git add .
         if [ $? -eq 0 ]; then
