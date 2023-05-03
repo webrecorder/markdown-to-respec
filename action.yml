@@ -19,4 +19,4 @@ runs:
         poetry install
     - name: Generate ReSpec
       shell: bash
-      run: poetry run respec_action.py
+      run: poetry run ./respec_action.py
