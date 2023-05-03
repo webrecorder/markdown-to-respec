@@ -24,7 +24,7 @@ runs:
       shell: bash
       run: |
         git config user.name "respec-action"
-        git commit -va "latest respec html"
+        git commit -a -m "Latest ReSpec HTML"
         if [ $? -eq 0 ]; then
           git push origin "{{ inputs.publish_branch }}"
         else
