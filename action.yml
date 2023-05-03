@@ -3,12 +3,12 @@ description: publish specifications written in Markdown files as ReSpec HTML
 inputs:
 outputs:
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: Install Python
       uses: actions/setup-python@4
       with:
-        python-version: "3.11"
+        python-version: 3.11
     - name: Install Dependencies
       run:
         - pip install poetry
