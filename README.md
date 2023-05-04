@@ -2,9 +2,9 @@
 
 [![Build Status](https://github.com/edsu/respec-action/workflows/tests/badge.svg)](https://github.com/edsu/respec-action/actions/workflows/main.yml)
 
-*respec-action* is a [Github Action] for automatically publishing Markdown files as [ReSpec] HTML. The idea is that it is easier to edit and manage specifications in Markdown, but easier to read specifications in your browser using HTML. By using respec-action you can have every commit to your Markdown trigger a rebuild of your HTML specifications.
+*respec-action* is a [Github Action] for automatically publishing Markdown files as [ReSpec] HTML. The idea is that it is easier to edit and manage specifications in Markdown, but that it's easier to read specifications in your browser as HTML. By using respec-action you can have every commit to your Markdown trigger a rebuild of your HTML specifications.
 
-For the action to push to your gh-pages branch you will need to grant write permission in `Settings / Actions / General / Read and write permissions`. Then you will need to create a `.github/workflows/respec.yml` file in your repository which contains:
+For the action to push to your branch you will need to grant write permission in `Settings / Actions / General / Read and write permissions`. Then you will need to create a `.github/workflows/respec.yml` file in your repository which contains:
 
 ```yaml
 name: Publish Specs

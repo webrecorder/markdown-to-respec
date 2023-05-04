@@ -8,10 +8,14 @@ import pathlib
 import frontmatter
 
 def main(path='.'):
+    """Generate ReSpec HTML from Markdown files in supplied path.
+    """
     for markdown_file in markdown_files(path):
         convert(markdown_file)
 
 def markdown_files(path):
+    """Iterator for Markdown files in a given path.
+    """
     for root, _, files in os.walk(path):
         for filename in files:
             path = pathlib.Path(root) / filename
@@ -19,20 +23,30 @@ def markdown_files(path):
                 yield path
 
 def convert(markdown_file):
+    """Convert a markdown_file to ReSpec HTML.
+    """
     html_file = get_html_file(markdown_file)
     html_file.open('w').write(respec(markdown_file))
 
 def get_html_file(markdown_file):
+    """Determine HTML file path based on the Markdown path.
+    """
     html_file = markdown_file.stem + '.html'
     if html_file == 'README.html':
         html_file = 'index.html'
     return markdown_file.parent / html_file
 
 def respec(markdown_file):
+    """Generate HTML for a Markdown file (or file object).
+    """
     doc = parse_markdown(markdown_file)
     return head(doc.metadata) + doc.content + foot()
 
 def head(respec_config):
+    """
+    Generate the head section of the ReSpec HTML including the ReSpec
+    configuration.
+    """
     config_json = json.dumps(respec_config, default=str, indent=2)
     # conformance and sotd
     return f"""
@@ -58,6 +72,8 @@ def head(respec_config):
 """
 
 def foot():
+    """Return the footer for the ReSpec HTML.
+    """
     return """
 
 <!-- end  of markdown text -->
@@ -100,11 +116,18 @@ def parse_markdown(markdown_file):
     return doc
 
 def extract_title(doc):
+    """Extract the title from the Markdown using the first header.
+    """
     if m := re.search(r'# (.+?)$', doc.content, re.MULTILINE):
         doc.metadata['title'] = m.group(1).strip()
         doc.content = re.sub(m.group(0), '', doc.content, count=1).strip()
 
 def extract_section(doc, header, name):
+    """
+    Extract a given section from the Markdown. The header should be the text
+    of the header to be extracted, and the name is the config name to use to
+    refer to the extracted section.
+    """
     pattern = re.compile(r'^#+ ' + header + r'$((?:\W|\w)+?)^#', re.MULTILINE)
     if name not in doc.metadata and (m := re.search(pattern, doc.content)):
         text = m.group(1).strip()
@@ -114,7 +137,8 @@ def extract_section(doc, header, name):
         doc.metadata[name] = ''
 
 def load_external_config(markdown_file):
-    # look for JSON config next to Markdown file
+    """Look for an external JSON config for the given Markdown file.
+    """
     json_file = markdown_file.stem + '.json'
     json_file = markdown_file.parent / json_file
     if json_file.is_file():
