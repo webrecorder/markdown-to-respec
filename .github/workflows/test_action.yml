@@ -14,3 +14,4 @@ jobs:
         uses: ./
         with:
           markdown_dir: 'test-data'
+          ignore: 'README.md'
