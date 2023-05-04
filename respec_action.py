@@ -171,7 +171,7 @@ def publish(branch_name, html_files):
             branch = repo.branches[branch_names.index(branch_name)]
         branch.checkout()
 
-    # set user to commit as
+    # set user to commit as (needs to be defined)
     config = repo.config_writer()
     config.add_section('user')
     config.set('user', 'email', 'respec-action@example.com')
