@@ -22,4 +22,4 @@ runs:
         pip install -r '${{ github.action_path }}/requirements.txt'
     - name: Generate ReSpec
       shell: bash
-      run: python3 "${{ github.action_path }}/respec_action.py" "${{ inputs.markdown_dir }}" "--branch ${{ inputs.publish_branch }}"
+      run: python3 "${{ github.action_path }}/respec_action.py" "${{ inputs.markdown_dir }}" --branch "${{ inputs.publish_branch }}"
