@@ -4,6 +4,7 @@ import os
 import re
 import sys
 import json
+import logging
 import pathlib
 import frontmatter
 
@@ -118,9 +119,12 @@ def parse_markdown(markdown_file):
 def extract_title(doc):
     """Extract the title from the Markdown using the first header.
     """
-    if m := re.search(r'# (.+?)$', doc.content, re.MULTILINE):
+    if 'title' not in doc.metadata and (m := re.search(r'# (.+?)$', doc.content, re.MULTILINE)):
         doc.metadata['title'] = m.group(1).strip()
-        doc.content = re.sub(m.group(0), '', doc.content, count=1).strip()
+        doc.content = doc.content.replace(m.group(0), '', 1)
+    else:
+        logging.warn("Unable to find title in Markdown or in frontmatter")
+        doc.metadata['title'] = ''
 
 def extract_section(doc, header, name):
     """
@@ -132,7 +136,7 @@ def extract_section(doc, header, name):
     if name not in doc.metadata and (m := re.search(pattern, doc.content)):
         text = m.group(1).strip()
         doc.metadata[name] = text
-        doc.content = doc.content.replace(m.group(0), '#')
+        doc.content = doc.content.replace(m.group(0), '#', 1)
     else:
         doc.metadata[name] = ''
 
