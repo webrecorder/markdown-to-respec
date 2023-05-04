@@ -98,7 +98,8 @@ def parse_markdown(markdown_file):
     doc.metadata['format'] = 'markdown'
 
     # the respec javascript
-    doc.metadata['respec_js'] = 'https://www.w3.org/Tools/respec/respec-w3c'
+    if 'respec_js' not in doc.metadata:
+        doc.metadata['respec_js'] = 'https://www.w3.org/Tools/respec/respec-w3c'
 
     # respec requires these at least to be empty to work
     if 'logos' not in doc.metadata:
