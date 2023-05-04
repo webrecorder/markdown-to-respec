@@ -1,8 +1,8 @@
 name: Test Action
 on:
-  - push:
-      branches:
-        main
+  push:
+    branches:
+      main
 jobs:
   test:
     runs-on: ubuntu-latest
