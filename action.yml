@@ -16,18 +16,14 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
-    - name: Install Pip
+    - name: Install Dependencies
       shell: bash
       run: |
-        pip install poetry
-        poetry install
-    - name: ls
-      shell: bash
-      run: "ls -al"
+        pip install frontmatter
     - name: Generate ReSpec
       shell: bash
       run: |
-        poetry run ./respec_action.py "${{ inputs.markdown_dir }}"
+        python3 "{{ github.action_path }}/respec_action.py" "${{ inputs.markdown_dir }}"
     - name: Publish
       shell: bash
       run: |
