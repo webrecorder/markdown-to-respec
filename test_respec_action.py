@@ -16,9 +16,10 @@ def test_run(setup_data):
     assert pathlib.Path('test/embedded/index.md').is_file(), 'embedded file is there'
     assert pathlib.Path('test/external/index.md').is_file(), 'external file is there'
     assert pathlib.Path('test/external/index.json').is_file(), 'external config is there'
+    assert pathlib.Path('test/ignore/index.md').is_file(), 'ignored markdown is present'
 
     # generate the respec using the test directory!
-    respec_action.main('test', skip_publish=True)
+    respec_action.main('test', skip_publish=True, ignore='test/ignore/index.md')
 
     # html file was created using embedded config
     html_file = pathlib.Path('test/embedded/index.html')
@@ -39,6 +40,9 @@ def test_run(setup_data):
     assert '<section id="sotd">' in html
     assert '<section id="conformance">' in html
     assert '"name": "Git Hub Jr"' in html
+
+    # ignored markdown was not processed
+    assert not pathlib.Path('test/ignore/index.html').is_file()
 
 def test_parse():
     markdown = \

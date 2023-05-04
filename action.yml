@@ -9,6 +9,9 @@ inputs:
     description: 'The directory containing Markdown files.'
     required: true
     default: '.'
+  ignore:
+    description: 'A regex of Markdown files to ignore.'
+    required: false
 runs:
   using: composite
   steps:
@@ -22,4 +25,8 @@ runs:
         pip install -r '${{ github.action_path }}/requirements.txt'
     - name: Generate ReSpec
       shell: bash
-      run: python3 "${{ github.action_path }}/respec_action.py" "${{ inputs.markdown_dir }}" --branch "${{ inputs.publish_branch }}"
+      run: |
+        python3 "${{ github.action_path }}/respec_action.py" \
+                "${{ inputs.markdown_dir }}" \
+                --branch "${{ inputs.publish_branch }}" \
+                --ignore "${{ inputs.ignore }}"

@@ -9,11 +9,13 @@ import pathlib
 import argparse
 import frontmatter
 
-def main(path, branch="gh-pages", skip_publish=False):
+def main(path, branch="gh-pages", skip_publish=False, ignore=None):
     """Generate ReSpec HTML from Markdown files in supplied path.
     """
     html_files = []
     for markdown_file in markdown_files(path):
+        if ignore and re.match(ignore, str(markdown_file)):
+            continue
         html_files.append(convert(markdown_file))
 
     if not skip_publish:
@@ -189,5 +191,6 @@ if __name__ == "__main__":
     parser.add_argument("path", default=".", help="Path to search for Markdown files")
     parser.add_argument("--branch", help="Git branch to publish to")
     parser.add_argument("--skip-publish", action="store_true", help="Skip publishing")
+    parser.add_argument("--ignore", help="A regex of Markdown files to ignore")
     args = parser.parse_args()
-    main(args.path, branch=args.branch, skip_publish=args.skip_publish)
+    main(args.path, branch=args.branch, skip_publish=args.skip_publish, ignore=args.ignore)
