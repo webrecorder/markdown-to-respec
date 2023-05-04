@@ -62,8 +62,8 @@ If you would like to use an alternate ReSpec Javascript URL you can use the `res
 
 [ReSpec]: https://respec.org/docs/
 [Github Action]: https://docs.github.com/en/actions
-[external]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
-[embedded]: https://github.com/edsu/respec-action/tree/main/test-data/external
+[embedded]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
+[external]: https://github.com/edsu/respec-action/tree/main/test-data/external
 [this Markdown file]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
 [this ReSpec HTML]: https://edsu.github.io/respec-action/test-data/embedded/
 [configured]: https://respec.org/docs/#configuration-options
