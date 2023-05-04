@@ -12,3 +12,5 @@ jobs:
         run: "ls -al"
       - name: Run respec_action
         uses: ./
+        with:
+          markdown_dir: 'test-data'

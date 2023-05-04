@@ -2,6 +2,7 @@
 
 import os
 import re
+import sys
 import json
 import pathlib
 import frontmatter
@@ -122,4 +123,8 @@ def load_external_config(markdown_file):
         raise Exception(f"Unable to find external ReSpec config at {json_file}")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        path = sys.argv[1]
+    else:
+        path = '.'
+    main(path)

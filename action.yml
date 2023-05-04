@@ -5,6 +5,10 @@ inputs:
     description: 'The git branch to publish HTML to.'
     required: true
     default: 'gh-pages'
+  markdown_dir:
+    description: 'The directory containing Markdown files.'
+    required: true
+    default: '.'
 runs:
   using: composite
   steps:
@@ -19,7 +23,8 @@ runs:
         poetry install
     - name: Generate ReSpec
       shell: bash
-      run: poetry run ./respec_action.py
+      run: |
+        poetry run ./respec_action.py "${{ inputs.markdown_dir }}"
     - name: Publish
       shell: bash
       run: |

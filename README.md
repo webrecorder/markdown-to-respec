@@ -26,9 +26,10 @@ jobs:
 The action takes several options which you can specify using the `with` clause in your respec-action step:
 
 * `publish_branch`: the branch to push the changes to (default `gh-pages`)
-* `respec_js`: a URL to use for the ReSpec JavaScript (default `https://www.w3.org/Tools/respec/respec-w3c`)
+* `markdown_dir`: if you want to limit the processing to a particular directory (default `.`)
 
-For example, to publish to another branch using an alternate build of respec_js you would:
+For example, to publish to another branch using an alternate build of respec_js
+using Markdown files in the `docs` directory you would:
 
 ```yaml
 name: Publish Specs
@@ -45,7 +46,7 @@ jobs:
         uses: edsu/respec-action@v0.1.0
         with:
           publish_branch: web
-          respec_js: https://example.com/js/respec-w3c.js
+          markdown_dir: docs
 ```
 
 ## ReSpec Configuration
@@ -54,6 +55,8 @@ ReSpec is usually configured with a JSON object in order to set authors, editors
 
 1. Include as frontmatter in your Markdown file: see [embedded] for an example.
 2. Include as a JSON file along side your Markdown file: see [external] for an example.
+
+If you would like to use an alternate ReSpec Javascript URL you can use the `respec_js` config option either in frontmatter or the external JSON configuration.
 
 [ReSpec]: https://respec.org/docs/
 [Github Action]: https://docs.github.com/en/actions
