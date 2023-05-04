@@ -19,7 +19,7 @@ runs:
     - name: Install Dependencies
       shell: bash
       run: |
-        pip install python-frontmatter
+        pip install -r '${{ github.action_path }}/requirements.txt'
     - name: Generate ReSpec
       shell: bash
       run: |
