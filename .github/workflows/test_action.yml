@@ -14,4 +14,4 @@ jobs:
         uses: ./
         with:
           markdown_dir: 'test-data'
-          ignore: '(README.md)|(test-data/ignore/index.json)'
+          ignore: '(README.md)|(test-data/ignore/index.md)'
