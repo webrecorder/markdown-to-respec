@@ -165,7 +165,7 @@ def publish(branch_name, html_files):
     # if we are publishing to a different branch we need to switch to it
     if branch_name != repo.active_branch.name:
         branch_names = [branch.name for branch in repo.branches]
-        if branch_name in branch_names:
+        if branch_name not in branch_names:
             branch = repo.create_head(branch_name)
         else:
             branch = repo.branches[branch_names.index(branch_name)]
