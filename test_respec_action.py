@@ -18,7 +18,7 @@ def test_run(setup_data):
     assert pathlib.Path('test/external/index.json').is_file(), 'external config is there'
 
     # generate the respec using the test directory!
-    respec_action.main('test')
+    respec_action.main('test', skip_publish=True)
 
     # html file was created using embedded config
     html_file = pathlib.Path('test/embedded/index.html')

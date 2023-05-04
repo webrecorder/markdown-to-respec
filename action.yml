@@ -22,19 +22,4 @@ runs:
         pip install -r '${{ github.action_path }}/requirements.txt'
     - name: Generate ReSpec
       shell: bash
-      run: |
-        python3 "${{ github.action_path }}/respec_action.py" "${{ inputs.markdown_dir }}"
-    - name: Publish
-      shell: bash
-      run: |
-        git config user.name "respec-action"
-        git config user.email "<>"
-
-        git checkout -b "${{ inputs.publish_branch }}"
-        git add .
-        if [ $? -eq 0 ]; then
-          git commit -m "Latest ReSpec HTML"
-          git push origin "${{ inputs.publish_branch }}" --force
-        else
-          echo "No ReSpec HTML needed publishing"
-        fi
+      run: python3 "${{ github.action_path }}/respec_action.py" "${{ inputs.markdown_dir }}" "--branch ${{ inputs.publish_branch }}"

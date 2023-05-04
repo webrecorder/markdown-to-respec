@@ -2,17 +2,22 @@
 
 import os
 import re
-import sys
+import git
 import json
 import logging
 import pathlib
+import argparse
 import frontmatter
 
-def main(path='.'):
+def main(path, branch="gh-pages", skip_publish=False):
     """Generate ReSpec HTML from Markdown files in supplied path.
     """
+    html_files = []
     for markdown_file in markdown_files(path):
-        convert(markdown_file)
+        html_files.append(convert(markdown_file))
+
+    if not skip_publish:
+        publish(branch, html_files)
 
 def markdown_files(path):
     """Iterator for Markdown files in a given path.
@@ -28,6 +33,7 @@ def convert(markdown_file):
     """
     html_file = get_html_file(markdown_file)
     html_file.open('w').write(respec(markdown_file))
+    return html_file
 
 def get_html_file(markdown_file):
     """Determine HTML file path based on the Markdown path.
@@ -151,9 +157,37 @@ def load_external_config(markdown_file):
     else:
         raise Exception(f"Unable to find external ReSpec config at {json_file}")
 
+def publish(branch_name, html_files):
+    """Publish by pushing a git branch.
+    """
+    repo = git.Repo(".")
+
+    # if we are publishing to a different branch we need to switch to it
+    if branch_name != repo.active_branch.name:
+        branch_names = [branch.name for branch in repo.branches]
+        if branch_name in branch_names:
+            branch = repo.create_head(branch_name)
+        else:
+            branch = repo.branches[branch_names.index(branch_name)]
+        branch.checkout()
+
+    # set user to commit as
+    config = repo.config_writer()
+    config.add_section('user')
+    config.set('user', 'email', '<>')
+    config.set('user', 'name', 'respec-action')
+
+    # commit the new HTML files
+    repo.index.add(html_files)
+    repo.index.commit('Latest ReSpec HTML')
+
+    # push to the origin (assumed to be the first remote)
+    repo.remotes[0].push(force=True)
+
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        path = sys.argv[1]
-    else:
-        path = '.'
-    main(path)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", default=".", help="Path to search for Markdown files")
+    parser.add_argument("--branch", help="Git branch to publish to")
+    parser.add_argument("--skip-publish", action="store_true", help="Skip publishing")
+    args = parser.parse_args()
+    main(args.path, branch=args.branch, skip_publish=args.skip_publish)
