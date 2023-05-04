@@ -19,7 +19,7 @@ runs:
     - name: Install Dependencies
       shell: bash
       run: |
-        pip install frontmatter
+        pip install python-frontmatter
     - name: Generate ReSpec
       shell: bash
       run: |
