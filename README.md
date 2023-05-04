@@ -65,4 +65,4 @@ If you would like to use an alternate ReSpec Javascript URL you can use the `res
 [external]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
 [embedded]: https://github.com/edsu/respec-action/tree/main/test-data/external
 [this Markdown file]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
-[thie ReSpec HTML]: https://edsu.github.io/respec-action/test-data/embedded/
+[this ReSpec HTML]: https://edsu.github.io/respec-action/test-data/embedded/
