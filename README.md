@@ -53,7 +53,7 @@ jobs:
 
 ## ReSpec Configuration
 
-ReSpec is usually configured with a JSON object in order to set authors, editors, various version URLs, etc. You have two options for these.
+ReSpec is usually [configured] with a JSON object in order to set authors, editors, various version URLs, etc. You have two options for these.
 
 1. Include as frontmatter in your Markdown file: see [embedded] for an example.
 2. Include as a JSON file along side your Markdown file: see [external] for an example.
@@ -66,3 +66,4 @@ If you would like to use an alternate ReSpec Javascript URL you can use the `res
 [embedded]: https://github.com/edsu/respec-action/tree/main/test-data/external
 [this Markdown file]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
 [this ReSpec HTML]: https://edsu.github.io/respec-action/test-data/embedded/
+[configured]: https://respec.org/docs/#configuration-options
