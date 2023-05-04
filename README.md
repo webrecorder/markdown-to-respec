@@ -11,7 +11,9 @@ For the action to push to your branch you will need to grant write permission in
 ```yaml
 name: Publish Specs
 on:
-  - push
+  - push:
+      branches: 
+        - main
 jobs:
   respec:
     runs-on: ubuntu-latest
@@ -36,7 +38,9 @@ using Markdown files in the `docs` directory you would:
 ```yaml
 name: Publish Specs
 on:
-  - push
+  - push:
+      branches:
+        - main
 jobs:
   respec:
     runs-on: ubuntu-latest
