@@ -1,5 +1,5 @@
 ---
-specStatus: DRAFT
+specStatus: WD
 editors: 
   - name: Git Hub Jr
     url: https://github.com

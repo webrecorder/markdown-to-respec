@@ -4,6 +4,8 @@
 
 *respec-action* is a [Github Action] for automatically publishing Markdown files as [ReSpec] HTML. The idea is that it is easier to edit and manage specifications in Markdown, but that it's easier to read specifications in your browser as HTML. By using respec-action you can have every commit to your Markdown trigger a rebuild of your HTML specifications.
 
+As a (silly) example [this Markdown file] will generate [this ReSpec HTML].
+
 For the action to push to your branch you will need to grant write permission in `Settings / Actions / General / Read and write permissions`. Then you will need to create a `.github/workflows/respec.yml` file in your repository which contains:
 
 ```yaml
@@ -62,3 +64,5 @@ If you would like to use an alternate ReSpec Javascript URL you can use the `res
 [Github Action]: https://docs.github.com/en/actions
 [external]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
 [embedded]: https://github.com/edsu/respec-action/tree/main/test-data/external
+[this Markdown file]: https://raw.githubusercontent.com/edsu/respec-action/main/test-data/embedded/index.md
+[thie ReSpec HTML]: https://edsu.github.io/respec-action/test-data/embedded/
