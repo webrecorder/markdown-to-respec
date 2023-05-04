@@ -21,6 +21,9 @@ runs:
       run: |
         pip install poetry
         poetry install
+    - name: ls
+      shell: bash
+      run: "ls -al"
     - name: Generate ReSpec
       shell: bash
       run: |
