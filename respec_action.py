@@ -174,7 +174,7 @@ def publish(branch_name, html_files):
     # set user to commit as
     config = repo.config_writer()
     config.add_section('user')
-    config.set('user', 'email', '<>')
+    config.set('user', 'email', 'ehs@pobox.com')
     config.set('user', 'name', 'respec-action')
 
     # commit the new HTML files
