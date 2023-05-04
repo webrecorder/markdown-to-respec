@@ -182,7 +182,7 @@ def publish(branch_name, html_files):
     repo.index.commit('Latest ReSpec HTML')
 
     # push to the origin (assumed to be the first remote)
-    repo.remotes[0].push(force=True)
+    repo.git.push(force=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
