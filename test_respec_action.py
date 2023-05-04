@@ -12,22 +12,42 @@ def setup_data():
     shutil.copytree('test-data', 'test')
 
 def test_run(setup_data):
-    assert pathlib.Path('test/subdir/index.md').is_file()
+    # source files are present (from setup_data)
+    assert pathlib.Path('test/embedded/index.md').is_file(), 'embedded file is there'
+    assert pathlib.Path('test/external/index.md').is_file(), 'external file is there'
+    assert pathlib.Path('test/external/index.json').is_file(), 'external config is there'
 
+    # generate the respec using the test directory!
     respec_action.main('test')
 
-    html_file = pathlib.Path('test/subdir/index.html')
+    # html file was created using embedded config
+    html_file = pathlib.Path('test/embedded/index.html')
     assert html_file.is_file()
-
     html = html_file.open().read()
-    assert '<title>Test Specification</title>' in html
+    assert '<title>Test Specification</title>' in html, 'found title'
+    assert '<section id="abstract">' in html, 'found abstract'
+    assert '<section id="sotd">' in html, 'found sotd'
+    assert '<section id="conformance">' in html, 'found conformance'
+    assert '"name": "Git Hub Jr"' in html, 'found editor from embedded yaml'
+
+    # html file was created using external config
+    html_file = pathlib.Path('test/external/index.html')
+    assert html_file.is_file()
+    html = html_file.open().read()
+    assert '<title>Test External Specification</title>' in html
     assert '<section id="abstract">' in html
     assert '<section id="sotd">' in html
     assert '<section id="conformance">' in html
+    assert '"name": "Git Hub Jr"' in html
 
 def test_parse():
     markdown = \
 """
+---
+editors:
+    - name: Git Hub Jr.
+---
+
 # This is a title
 
 ## Status of this Document
@@ -70,6 +90,11 @@ This is the overview
 def test_missing():
     markdown = \
 """
+---
+editors:
+    - name: Git Hub Jr.
+---
+
 # This is a title
 
 Everything else is missing!

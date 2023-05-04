@@ -65,7 +65,16 @@ def foot():
 </html>"""
 
 def parse_markdown(markdown_file):
+    """
+    Parse a Markdown file or file object and return a frontmatter.Post object
+    If the Markdown contains no frontmatter it will look for a corresponding
+    JSON file and load metadata from that instead.
+    """
     doc = frontmatter.load(markdown_file)
+
+    # if there is no frontmatter configuration look for JSON file
+    if len(doc.metadata) == 0:
+        doc.metadata = load_external_config(markdown_file)
 
     # the spec can live as markdown in the HTML as long as we tell respec
     doc.metadata['format'] = 'markdown'
@@ -102,6 +111,15 @@ def extract_section(doc, header, name):
         doc.content = doc.content.replace(m.group(0), '#')
     else:
         doc.metadata[name] = ''
+
+def load_external_config(markdown_file):
+    # look for JSON config next to Markdown file
+    json_file = markdown_file.stem + '.json'
+    json_file = markdown_file.parent / json_file
+    if json_file.is_file():
+        return json.load(json_file.open('r'))
+    else:
+        raise Exception(f"Unable to find external ReSpec config at {json_file}")
 
 if __name__ == "__main__":
     main()
