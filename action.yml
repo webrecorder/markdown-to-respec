@@ -1,4 +1,4 @@
-name: respec-action
+name: markdown-to-respec
 description: publish specifications written in Markdown files as ReSpec HTML
 inputs:
   publish_branch:
@@ -26,7 +26,7 @@ runs:
     - name: Generate ReSpec
       shell: bash
       run: |
-        python3 "${{ github.action_path }}/respec_action.py" \
+        python3 "${{ github.action_path }}/markdown_to_respec.py" \
                 "${{ inputs.markdown_dir }}" \
                 --branch "${{ inputs.publish_branch }}" \
                 --ignore "${{ inputs.ignore }}"

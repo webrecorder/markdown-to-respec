@@ -176,8 +176,8 @@ def publish(branch_name, html_files):
     # set user to commit as (needs to be defined)
     config = repo.config_writer()
     config.add_section('user')
-    config.set('user', 'email', 'respec-action@example.com')
-    config.set('user', 'name', 'respec-action')
+    config.set('user', 'email', 'markdown-to-respec@example.com')
+    config.set('user', 'name', 'markdown-to-respec')
 
     # commit the new HTML files
     repo.index.add(html_files)

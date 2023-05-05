@@ -3,7 +3,7 @@ import os
 import pytest
 import shutil
 import pathlib
-import respec_action
+import markdown_to_respec
 
 @pytest.fixture
 def setup_data():
@@ -19,7 +19,7 @@ def test_run(setup_data):
     assert pathlib.Path('test/ignore/index.md').is_file(), 'ignored markdown is present'
 
     # generate the respec using the test directory!
-    respec_action.main('test', skip_publish=True, ignore='test/ignore/index.md')
+    markdown_to_respec.main('test', skip_publish=True, ignore='test/ignore/index.md')
 
     # html file was created using embedded config
     html_file = pathlib.Path('test/embedded/index.html')
@@ -73,7 +73,7 @@ This is some conformance text.
 This is the overview
 
 """
-    doc = respec_action.parse_markdown(io.StringIO(markdown))
+    doc = markdown_to_respec.parse_markdown(io.StringIO(markdown))
 
     assert 'title' in doc.metadata
     assert doc.metadata['title'] == 'This is a title'
@@ -104,7 +104,7 @@ editors:
 Everything else is missing!
 """
 
-    doc = respec_action.parse_markdown(io.StringIO(markdown))
+    doc = markdown_to_respec.parse_markdown(io.StringIO(markdown))
     assert 'abstract' in doc.metadata
     assert 'sotd' in doc.metadata
     assert 'conformance' in doc.metadata

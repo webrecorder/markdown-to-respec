@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run respec_action
+      - name: Run markdown-to-respec
         uses: ./
         with:
           markdown_dir: 'test-data'
