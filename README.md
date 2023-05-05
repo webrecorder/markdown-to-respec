@@ -1,6 +1,6 @@
 # markdown-to-respec
 
-[![Build Status](https://github.com/edsu/markdown-to-respec/workflows/tests/badge.svg)](https://github.com/edsu/markdown-to-respec/actions/workflows/main.yml)
+[![Build Status](https://github.com/webrecorder/markdown-to-respec/workflows/tests/badge.svg)](https://github.com/webrecorder/markdown-to-respec/actions/workflows/main.yml)
 
 *markdown-to-respec* is a [Github Action] for automatically publishing Markdown files as [ReSpec] HTML. The idea is that it is easier to edit and manage specifications in Markdown, but that it's easier to read specifications in your browser as HTML. By using markdown-to-respec you can have every commit to your Markdown trigger a rebuild of your HTML specifications.
 
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Generate ReSpec HTML
-        uses: edsu/markdown-to-respec@v0.2.0
+        uses: webrecorder/markdown-to-respec@v0.2.0
 ```
 
 ## Action Options
@@ -49,7 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Generate ReSpec HTML
-        uses: edsu/markdown-to-respec@v0.1.0
+        uses: webrecorder/markdown-to-respec@v0.1.0
         with:
           publish_branch: web
           markdown_dir: docs
@@ -66,8 +66,8 @@ If you would like to use an alternate ReSpec Javascript URL you can use the `res
 
 [ReSpec]: https://respec.org/docs/
 [Github Action]: https://docs.github.com/en/actions
-[embedded]: https://raw.githubusercontent.com/edsu/markdown-to-respec/main/test-data/embedded/index.md
-[external]: https://github.com/edsu/markdown-to-respec/tree/main/test-data/external
-[this Markdown file]: https://raw.githubusercontent.com/edsu/markdown-to-respec/main/test-data/embedded/index.md
-[this ReSpec HTML]: https://edsu.github.io/markdown-to-respec/test-data/embedded/
+[embedded]: https://raw.githubusercontent.com/webrecorder/markdown-to-respec/main/test-data/embedded/index.md
+[external]: https://github.com/webrecorder/markdown-to-respec/tree/main/test-data/external
+[this Markdown file]: https://raw.githubusercontent.com/webrecorder/markdown-to-respec/main/test-data/embedded/index.md
+[this ReSpec HTML]: https://webrecorder.github.io/markdown-to-respec/test-data/embedded/
 [configured]: https://respec.org/docs/#configuration-options
