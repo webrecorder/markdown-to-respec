@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Generate ReSpec HTML
-        uses: webrecorder/markdown-to-respec@v0.2.0
+        uses: webrecorder/markdown-to-respec@v0.4.0
 ```
 
 ## Action Options
@@ -63,6 +63,23 @@ ReSpec is usually [configured] with a JSON object in order to set authors, edito
 2. Include as a JSON file along side your Markdown file: see [external] for an example.
 
 If you would like to use an alternate ReSpec Javascript URL you can use the `respec_js` config option either in frontmatter or the external JSON configuration.
+
+## Command Line
+
+If you want you can install *markdown-to-respec* and run it from the command line. This can be useful in situations where you are making local changes and want to see the resulting HTML. You should be able to use your brownser to open the resulting HTML files.
+
+```
+usage: markdown-to-respec [-h] [--branch BRANCH] [--publish] [--ignore IGNORE] path
+
+positional arguments:
+  path             Path to search for Markdown files
+
+options:
+  -h, --help       show this help message and exit
+  --branch BRANCH  Git branch to publish to
+  --publish        Commit and push new HTML files
+  --ignore IGNORE  A regex of Markdown files to ignore
+```
 
 [ReSpec]: https://respec.org/docs/
 [Github Action]: https://docs.github.com/en/actions

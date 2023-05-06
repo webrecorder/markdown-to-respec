@@ -19,7 +19,7 @@ def test_run(setup_data):
     assert pathlib.Path('test/ignore/index.md').is_file(), 'ignored markdown is present'
 
     # generate the respec using the test directory!
-    markdown_to_respec.main('test', skip_publish=True, ignore='test/ignore/index.md')
+    markdown_to_respec.run('test', publish=False, ignore='test/ignore/index.md')
 
     # html file was created using embedded config
     html_file = pathlib.Path('test/embedded/index.html')

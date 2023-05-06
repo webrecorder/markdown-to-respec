@@ -1,2 +1,5 @@
 test
 __pycache__
+Pipfile*
+.eggs
+markdown_to_respec.egg-info

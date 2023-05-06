@@ -3,23 +3,39 @@
 import os
 import re
 import git
+import sys
 import json
 import logging
 import pathlib
 import argparse
 import frontmatter
 
-def main(path, branch="gh-pages", skip_publish=False, ignore=None):
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", default=".", help="Path to search for Markdown files")
+    parser.add_argument("--branch", help="Git branch to publish to")
+    parser.add_argument("--publish", action="store_true", help="Commit and push new HTML files")
+    parser.add_argument("--ignore", help="A regex of Markdown files to ignore")
+    args = parser.parse_args()
+    run(args.path, branch=args.branch, publish=args.publish, ignore=args.ignore)
+
+def run(path, branch="gh-pages", publish=False, ignore=None):
     """Generate ReSpec HTML from Markdown files in supplied path.
     """
     html_files = []
     for markdown_file in markdown_files(path):
         if ignore and re.match(ignore, str(markdown_file)):
             continue
-        html_files.append(convert(markdown_file))
+        try:
+            html_file = convert(markdown_file)
+            html_files.append(html_file)
+        except Exception as e:
+            sys.exit(f"Unable to convert {markdown_file}: {e}")
+        print(f"converted {markdown_file} to {html_file}")
 
-    if not skip_publish:
-        publish(branch, html_files)
+    if publish:
+        git_push(branch, html_files)
 
 def markdown_files(path):
     """Iterator for Markdown files in a given path.
@@ -159,7 +175,7 @@ def load_external_config(markdown_file):
     else:
         raise Exception(f"Unable to find external ReSpec config at {json_file}")
 
-def publish(branch_name, html_files):
+def git_push(branch_name, html_files):
     """Publish by pushing a git branch.
     """
     repo = git.Repo(".")
@@ -187,10 +203,5 @@ def publish(branch_name, html_files):
     repo.git.push('origin', branch_name, force=True)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("path", default=".", help="Path to search for Markdown files")
-    parser.add_argument("--branch", help="Git branch to publish to")
-    parser.add_argument("--skip-publish", action="store_true", help="Skip publishing")
-    parser.add_argument("--ignore", help="A regex of Markdown files to ignore")
-    args = parser.parse_args()
-    main(args.path, branch=args.branch, skip_publish=args.skip_publish, ignore=args.ignore)
+    main()
+
