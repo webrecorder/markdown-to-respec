@@ -66,7 +66,7 @@ If you would like to use an alternate ReSpec Javascript URL you can use the `res
 
 ## Command Line
 
-If you want you can install *markdown-to-respec* and run it from the command line. This can be useful in situations where you are making local changes and want to see the resulting HTML. You should be able to use your brownser to open the resulting HTML files.
+If you want you can install *markdown-to-respec* and run it from the command line. This can be useful in situations where you are making local changes and want to see the resulting HTML. You should be able to use your browser to open the resulting HTML files.
 
 ```
 usage: markdown-to-respec [-h] [--branch BRANCH] [--publish] [--ignore IGNORE] path
