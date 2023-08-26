@@ -1,6 +1,6 @@
 # markdown-to-respec
 
-[![Build Status](https://github.com/webrecorder/markdown-to-respec/workflows/tests/badge.svg)](https://github.com/webrecorder/markdown-to-respec/actions/workflows/main.yml)
+[![Build Status](https://github.com/webrecorder/markdown-to-respec/workflows/tests/badge.svg)](https://github.com/webrecorder/markdown-to-respec/actions/workflows/test.yml)
 
 *markdown-to-respec* is a [Github Action] for automatically publishing Markdown files as [ReSpec] HTML. The idea is that it is easier to edit and manage specifications in Markdown, but that it's easier to read specifications in your browser as HTML. By using markdown-to-respec you can have every commit to your Markdown trigger a rebuild of your HTML specifications.
 
