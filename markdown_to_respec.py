@@ -78,7 +78,7 @@ def head(respec_config):
 <!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf8">
+  <meta charset="utf-8">
   <title>{respec_config['title']}</title>
   <script src="{respec_config['respec_js']}" class="remove" defer ></script>
   <script class="remove">
